@@ -1,1125 +1,535 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Atualidades</title>
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Notícias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
-/* =====================================================
-   CONFIGURAÇÃO GERAL
-===================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background: #07111f;
-
-    color: #ffffff;
-}
-
-body {
-
-    display: flex;
-
-    flex-direction: column;
-}
-
-
-/* =====================================================
-   CABEÇALHO
-===================================================== */
-
-header {
-
-    height: 9vh;
-
-    min-height: 70px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 2.5vw;
-
-    background: #0c1b2e;
-
-    border-bottom: 2px solid #24364d;
-}
-
-.logo {
-
-    font-size:
-        clamp(
-            24px,
-            2.2vw,
-            42px
-        );
-
-    font-weight: 800;
-
-    letter-spacing: -1px;
-}
-
-.logo span {
-
-    color: #4da3ff;
-}
-
-.datetime {
-
-    text-align: right;
-}
-
-.date {
-
-    font-size:
-        clamp(
-            14px,
-            1.1vw,
-            22px
-        );
-
-    color: #9fb1c5;
-}
-
-.time {
-
-    font-size:
-        clamp(
-            24px,
-            2vw,
-            38px
-        );
-
-    font-weight: 700;
-}
-
-
-/* =====================================================
-   ÁREA PRINCIPAL
-===================================================== */
-
-main {
-
-    height: 91vh;
-
-    padding:
-        1.4vh
-        2vw;
-
-    display: grid;
-
-    grid-template-columns:
-        2fr
-        1fr;
-
-    grid-template-rows:
-        1fr
-        1fr;
-
-    gap: 1.2vw;
-}
-
-
-/* =====================================================
-   MANCHETE PRINCIPAL
-===================================================== */
-
-.feature {
-
-    grid-row: span 2;
-
-    background: #0d2036;
-
-    border-radius: 10px;
-
-    padding: 2vw;
-
-    overflow: hidden;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: flex-end;
-
-    position: relative;
-}
-
-.feature::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            transparent 30%,
-            rgba(0,0,0,.8) 100%
-        );
-
-    pointer-events: none;
-}
-
-.feature-content {
-
-    position: relative;
-
-    z-index: 2;
-}
-
-.category {
-
-    color: #4da3ff;
-
-    font-size:
-        clamp(
-            13px,
-            1vw,
-            20px
-        );
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 1vh;
-}
-
-.feature h1 {
-
-    margin: 0;
-
-    font-size:
-        clamp(
-            30px,
-            3vw,
-            60px
-        );
-
-    line-height: 1.08;
-
-    letter-spacing: -1px;
-}
-
-.feature p {
-
-    margin:
-        1.5vh
-        0
-        0;
-
-    color: #c5d2df;
-
-    font-size:
-        clamp(
-            15px,
-            1.2vw,
-            25px
-        );
-
-    line-height: 1.35;
-}
-
-
-/* =====================================================
-   PAINÉIS
-===================================================== */
-
-.panel {
-
-    background: #0d2036;
-
-    border-radius: 10px;
-
-    padding: 1.4vw;
-
-    overflow: hidden;
-}
-
-.panel-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    font-size:
-        clamp(
-            17px,
-            1.3vw,
-            26px
-        );
-
-    font-weight: 800;
-
-    margin-bottom: 1vh;
-
-    padding-bottom: .8vh;
-
-    border-bottom:
-        2px solid #263d56;
-}
-
-.panel-title span {
-
-    color: #4da3ff;
-}
-
-
-/* =====================================================
-   NOTÍCIAS
-===================================================== */
-
-.news-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 1vh;
-}
-
-.news-item {
-
-    padding-bottom: .8vh;
-
-    border-bottom:
-        1px solid #20364d;
-}
-
-.news-title {
-
-    font-size:
-        clamp(
-            14px,
-            1.05vw,
-            21px
-        );
-
-    font-weight: 700;
-
-    line-height: 1.2;
-}
-
-.news-summary {
-
-    margin-top: .3vh;
-
-    color: #9fb1c5;
-
-    font-size:
-        clamp(
-            11px,
-            .75vw,
-            15px
-        );
-
-    line-height: 1.25;
-}
-
-.news-source {
-
-    margin-top: .3vh;
-
-    color: #5d8db9;
-
-    font-size:
-        clamp(
-            9px,
-            .6vw,
-            12px
-        );
-}
-
-
-/* =====================================================
-   RODAPÉ
-===================================================== */
-
-footer {
-
-    position: fixed;
-
-    bottom: 0;
-
-    left: 0;
-
-    right: 0;
-
-    height: 4vh;
-
-    min-height: 28px;
-
-    background: #07111f;
-
-    border-top:
-        1px solid #20364d;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color: #72869c;
-
-    font-size:
-        clamp(
-            9px,
-            .65vw,
-            13px
-        );
-}
-
-
-/* =====================================================
-   RESPONSIVIDADE
-===================================================== */
-
-@media (max-width: 900px) {
-
-    main {
-
-        grid-template-columns: 1fr;
-
-        grid-template-rows:
-            1fr
-            1fr
-            1fr;
-
-        overflow: auto;
-    }
-
-    .feature {
-
-        grid-row: auto;
-    }
-
-}
+  :root{
+    --bg:            #0a1512;
+    --panel:         #101d19;
+    --panel-border:  #1e2e28;
+    --divider:       #223229;
+    --text:          #f3efe6;
+    --text-dim:      #8fa39a;
+    --accent:        #d9a441;
+    --live:          #b84a3e;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    width:100%; height:100%;
+    overflow:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    cursor:none;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+
+  /* nada nesta página é clicável — reforça visualmente */
+  a, button{ pointer-events:none; }
+
+  body{ display:flex; flex-direction:column; }
+
+  /* ================= HEADER ================= */
+
+  header{
+    height:10vh; min-height:76px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 2.4vw;
+    background:var(--panel);
+    border-bottom:1px solid var(--panel-border);
+  }
+
+  .brand{ display:flex; align-items:center; gap:14px; }
+
+  .brand .dot{
+    width:12px; height:12px; border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 0 0 rgba(184,74,62,.6);
+    animation:pulse 2s infinite;
+  }
+
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(184,74,62,.55); }
+    70%{ box-shadow:0 0 0 12px rgba(184,74,62,0); }
+    100%{ box-shadow:0 0 0 0 rgba(184,74,62,0); }
+  }
+
+  .brand-text{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:clamp(22px,2vw,36px);
+    letter-spacing:-.5px;
+  }
+
+  .brand-text span{ color:var(--accent); }
+
+  .brand-sub{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(9px,.62vw,13px);
+    color:var(--text-dim);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  .clockbox{ text-align:right; font-family:'IBM Plex Mono',monospace; }
+
+  .clockbox .time{
+    font-size:clamp(22px,1.9vw,36px);
+    font-weight:500;
+    color:var(--text);
+  }
+
+  .clockbox .date{
+    font-size:clamp(10px,.75vw,15px);
+    color:var(--text-dim);
+    text-transform:capitalize;
+  }
+
+  /* ================= MAIN GRID ================= */
+
+  main{
+    flex:1;
+    padding:1.4vh 2vw;
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:1.2vw;
+    overflow:hidden;
+  }
+
+  .col-right{
+    display:grid;
+    grid-template-rows:1fr 1fr;
+    grid-template-columns:1fr 1fr;
+    gap:1.2vw;
+    overflow:hidden;
+  }
+
+  /* ================= FEATURE (manchete) ================= */
+
+  .feature{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:6px;
+    padding:2.4vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+  }
+
+  .feature .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(11px,.85vw,16px);
+    color:var(--accent);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:1.6vh;
+  }
+
+  .feature h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(28px,2.7vw,52px);
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-.5px;
+    transition:opacity .5s ease;
+  }
+
+  .feature p{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(14px,1.05vw,21px);
+    line-height:1.4;
+    color:var(--text-dim);
+    margin:1.8vh 0 0;
+    transition:opacity .5s ease;
+  }
+
+  .feature .src{
+    margin-top:2vh;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(10px,.68vw,13px);
+    color:var(--text-dim);
+  }
+
+  .fade{ opacity:0 !important; }
+
+  .progress-track{
+    position:absolute; left:0; bottom:0; height:3px; width:100%;
+    background:rgba(255,255,255,.06);
+  }
+
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--accent);
+  }
+
+  /* ================= PANELS ================= */
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:6px;
+    padding:1.3vw 1.5vw;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  .panel-title{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(11px,.8vw,15px);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    padding-bottom:1vh;
+    margin-bottom:1vh;
+    border-bottom:1px solid var(--divider);
+  }
+
+  .panel-title .sq{
+    width:8px; height:8px;
+    background:var(--accent);
+  }
+
+  .news-list{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:1.1vh;
+    overflow:hidden;
+    transition:opacity .4s ease;
+  }
+
+  .news-item{
+    padding-bottom:1vh;
+    border-bottom:1px solid var(--divider);
+  }
+
+  .news-item:last-child{ border-bottom:none; }
+
+  .news-title{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:clamp(12.5px,.92vw,18px);
+    line-height:1.25;
+    color:var(--text);
+  }
+
+  .news-source{
+    margin-top:.4vh;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(9px,.58vw,12px);
+    color:var(--accent);
+  }
+
+  .empty-msg{
+    color:var(--text-dim);
+    font-size:clamp(12px,.85vw,16px);
+    font-family:'Inter',sans-serif;
+  }
 
 </style>
-
 </head>
-
-
 <body>
 
-
-<!-- =====================================================
-     CABEÇALHO
-===================================================== -->
-
 <header>
-
-    <div class="logo">
-
-        ATUALIDADES<span>.</span>
-
+  <div class="brand">
+    <div class="dot"></div>
+    <div>
+      <div class="brand-text">PAINEL<span>.</span>NOTÍCIAS</div>
+      <div class="brand-sub" id="statusLine">conectando aos feeds…</div>
     </div>
-
-
-    <div class="datetime">
-
-        <div
-            class="date"
-            id="date">
-        </div>
-
-        <div
-            class="time"
-            id="time">
-        </div>
-
-    </div>
-
+  </div>
+  <div class="clockbox">
+    <div class="time" id="time">--:--</div>
+    <div class="date" id="date">—</div>
+  </div>
 </header>
-
-
-
-<!-- =====================================================
-     CONTEÚDO
-===================================================== -->
 
 <main>
 
+  <section class="feature" id="feature">
+    <div class="eyebrow" id="featEyebrow">PRINCIPAL</div>
+    <h1 id="featTitle">Carregando manchetes…</h1>
+    <p id="featDesc">Aguarde a primeira atualização dos feeds.</p>
+    <div class="src" id="featSrc"></div>
+    <div class="progress-track"><div class="progress-fill" id="featProgress"></div></div>
+  </section>
 
-    <!-- ================================================
-         MANCHETE PRINCIPAL
-    ================================================= -->
-
-    <section class="feature">
-
-        <div
-            class="feature-content"
-            id="feature">
-
-            <div class="category">
-                PRINCIPAL
-            </div>
-
-            <h1>
-                Carregando principais notícias...
-            </h1>
-
-            <p>
-                Aguarde a atualização das notícias.
-            </p>
-
-        </div>
-
+  <div class="col-right">
+    <section class="panel">
+      <div class="panel-title"><span class="sq"></span>Brasil</div>
+      <div class="news-list" id="list-brasil"><div class="empty-msg">Carregando…</div></div>
     </section>
-
-
-
-    <!-- ================================================
-         BRASIL
-    ================================================= -->
 
     <section class="panel">
-
-        <div class="panel-title">
-
-            <span>●</span>
-
-            BRASIL
-
-        </div>
-
-
-        <div
-            class="news-list"
-            id="brasil">
-
-            Carregando...
-
-        </div>
-
+      <div class="panel-title"><span class="sq"></span>Mundo</div>
+      <div class="news-list" id="list-mundo"><div class="empty-msg">Carregando…</div></div>
     </section>
-
-
-
-    <!-- ================================================
-         ECONOMIA
-    ================================================= -->
 
     <section class="panel">
-
-        <div class="panel-title">
-
-            <span>●</span>
-
-            ECONOMIA
-
-        </div>
-
-
-        <div
-            class="news-list"
-            id="economia">
-
-            Carregando...
-
-        </div>
-
+      <div class="panel-title"><span class="sq"></span>Economia</div>
+      <div class="news-list" id="list-economia"><div class="empty-msg">Carregando…</div></div>
     </section>
 
+    <section class="panel">
+      <div class="panel-title"><span class="sq"></span>Esportes</div>
+      <div class="news-list" id="list-esportes"><div class="empty-msg">Carregando…</div></div>
+    </section>
+  </div>
 
 </main>
 
-
-
-<!-- =====================================================
-     RODAPÉ
-===================================================== -->
-
-<footer>
-
-    Notícias atualizadas automaticamente
-    •
-    Painel de Atualidades
-
-</footer>
-
-
-
 <script>
-
-/* =====================================================
+/* =====================================================================
    CONFIGURAÇÃO
-===================================================== */
+   -----------------------------------------------------------------
+   As notícias vêm do Google News (RSS por categoria, em pt-BR),
+   que por sua vez agrega e linka para os grandes portais
+   (G1, Folha, UOL, CNN Brasil, etc). O "source" de cada item é
+   extraído do próprio título do Google News.
+
+   Como o navegador não pode ler RSS/XML de outro domínio
+   diretamente (bloqueio de CORS), usamos o rss2json.com como
+   proxy que já entrega o feed em JSON.
+
+   Para uso contínuo em produção (TV ligada o dia todo), crie uma
+   chave gratuita em https://rss2json.com/ e cole abaixo em
+   RSS2JSON_API_KEY — sem chave, o serviço tem um limite de
+   requisições mais baixo e pode falhar em horários de pico.
+===================================================================== */
 
 const CONFIG = {
 
-    feeds: {
+  RSS2JSON_API_KEY: "", // opcional, mas recomendado
 
-        brasil:
-            "https://news.google.com/rss/search?q=Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+  feeds: {
+    brasil:   "https://news.google.com/rss/search?q=Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+    mundo:    "https://news.google.com/rss/search?q=Mundo&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+    economia: "https://news.google.com/rss/search?q=Economia&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+    esportes: "https://news.google.com/rss/search?q=Esportes&hl=pt-BR&gl=BR&ceid=BR:pt-419"
+  },
 
-        economia:
-            "https://news.google.com/rss/search?q=Economia&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-
-        mundo:
-            "https://news.google.com/rss/search?q=Mundo&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-
-        esportes:
-            "https://news.google.com/rss/search?q=Esportes&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-
-    },
-
-    refresh:
-        5 * 60 * 1000
-
+  itemsPerFetch:      10,   // quantas notícias buscar por categoria
+  itemsVisiveis:       4,   // quantas aparecem por vez em cada painel
+  refreshFeedsMs:  10*60*1000, // busca novos dados a cada 10 min
+  rotatePanelMs:    18000,     // troca o conjunto visível de cada painel
+  rotateFeatureMs:   9000      // troca a manchete principal
 };
 
+let dadosPorCategoria = { brasil: [], mundo: [], economia: [], esportes: [] };
+let offsetPainel      = { brasil: 0,  mundo: 0,  economia: 0,  esportes: 0 };
+let manchetes         = [];   // pool de destaques para a área principal
+let indiceManchete    = 0;
 
-/* =====================================================
-   RELÓGIO
-===================================================== */
+/* ========================= RELÓGIO ========================= */
 
-function atualizarRelogio() {
-
-    const agora =
-        new Date();
-
-
-    const data =
-        agora.toLocaleDateString(
-            "pt-BR",
-            {
-                weekday: "long",
-                day: "2-digit",
-                month: "long"
-            }
-        );
-
-
-    const hora =
-        agora.toLocaleTimeString(
-            "pt-BR",
-            {
-                hour: "2-digit",
-                minute: "2-digit"
-            }
-        );
-
-
-    document.getElementById(
-        "date"
-    ).textContent =
-
-        data.charAt(0).toUpperCase()
-        +
-        data.slice(1);
-
-
-    document.getElementById(
-        "time"
-    ).textContent =
-
-        hora;
-
+function atualizarRelogio(){
+  const agora = new Date();
+  const data = agora.toLocaleDateString("pt-BR",{ weekday:"long", day:"2-digit", month:"long" });
+  const hora = agora.toLocaleTimeString("pt-BR",{ hour:"2-digit", minute:"2-digit" });
+  document.getElementById("date").textContent = data.charAt(0).toUpperCase()+data.slice(1);
+  document.getElementById("time").textContent = hora;
 }
-
-
 atualizarRelogio();
+setInterval(atualizarRelogio,1000);
 
+/* ========================= BUSCA DE FEEDS ========================= */
 
-setInterval(
-    atualizarRelogio,
-    1000
-);
-
-
-/* =====================================================
-   CARREGAR RSS
-===================================================== */
-
-async function carregarRSS(url) {
-
-    /*
-     * O AllOrigins recebe a URL do RSS
-     * e devolve seu conteúdo dentro
-     * de um objeto JSON.
-     */
-
-    const proxy =
-        "https://api.allorigins.win/get?url="
-        +
-        encodeURIComponent(url);
-
-
-    const resposta =
-        await fetch(proxy);
-
-
-    if (!resposta.ok) {
-
-        throw new Error(
-            "Falha ao acessar o feed"
-        );
-
-    }
-
-
-    const dados =
-        await resposta.json();
-
-
-    if (!dados.contents) {
-
-        throw new Error(
-            "O feed não retornou conteúdo"
-        );
-
-    }
-
-
-    /*
-     * Converte o conteúdo recebido
-     * em XML.
-     */
-
-    const parser =
-        new DOMParser();
-
-
-    const xml =
-        parser.parseFromString(
-            dados.contents,
-            "application/xml"
-        );
-
-
-    /*
-     * Procura todos os itens
-     * de notícia.
-     */
-
-    const itens =
-        Array.from(
-            xml.querySelectorAll(
-                "item"
-            )
-        );
-
-
-    if (itens.length === 0) {
-
-        throw new Error(
-            "Nenhuma notícia encontrada"
-        );
-
-    }
-
-
-    return itens;
-
+function limparHtml(texto){
+  if(!texto) return "";
+  const div = document.createElement("div");
+  div.innerHTML = texto;
+  return (div.textContent || div.innerText || "").replace(/\s+/g," ").trim();
 }
 
-
-/* =====================================================
-   LIMPAR TEXTO
-===================================================== */
-
-function limparTexto(texto) {
-
-    if (!texto) {
-
-        return "";
-
-    }
-
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.innerHTML =
-        texto;
-
-
-    return (
-
-        div.textContent
-        ||
-        div.innerText
-        ||
-        ""
-
-    )
-    .replace(
-        /\s+/g,
-        " "
-    )
-    .trim();
-
+/* O Google News formata o título como "Manchete - Nome do Portal".
+   Separamos essa fonte do título de verdade aqui. */
+function separarFonte(tituloBruto){
+  const idx = tituloBruto.lastIndexOf(" - ");
+  if(idx === -1) return { titulo: tituloBruto, fonte: "" };
+  return {
+    titulo: tituloBruto.slice(0, idx).trim(),
+    fonte:  tituloBruto.slice(idx+3).trim()
+  };
 }
 
+async function buscarFeed(url){
+  const chave = CONFIG.RSS2JSON_API_KEY ? `&api_key=${CONFIG.RSS2JSON_API_KEY}` : "";
+  const endpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&count=${CONFIG.itemsPerFetch}${chave}`;
 
-/* =====================================================
-   RENDERIZAR LISTA
-===================================================== */
+  const resposta = await fetch(endpoint);
+  if(!resposta.ok) throw new Error("HTTP " + resposta.status);
 
-function renderizarNoticias(
-    noticias,
-    elemento
-) {
+  const dados = await resposta.json();
+  if(dados.status !== "ok" || !Array.isArray(dados.items) || dados.items.length === 0){
+    throw new Error(dados.message || "feed vazio");
+  }
 
-    elemento.innerHTML = "";
-
-
-    noticias
-        .slice(
-            0,
-            4
-        )
-        .forEach(
-            noticia => {
-
-
-                const titulo =
-                    limparTexto(
-                        noticia
-                            .querySelector(
-                                "title"
-                            )
-                            ?.textContent
-                    );
-
-
-                const descricao =
-                    limparTexto(
-                        noticia
-                            .querySelector(
-                                "description"
-                            )
-                            ?.textContent
-                    );
-
-
-                const fonte =
-                    limparTexto(
-                        noticia
-                            .querySelector(
-                                "source"
-                            )
-                            ?.textContent
-                    );
-
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "news-item";
-
-
-                item.innerHTML = `
-
-                    <div class="news-title">
-
-                        ${titulo}
-
-                    </div>
-
-
-                    ${
-                        descricao
-                        ?
-                        `
-
-                        <div class="news-summary">
-
-                            ${descricao.substring(
-                                0,
-                                140
-                            )}
-
-                        </div>
-
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        fonte
-                        ?
-                        `
-
-                        <div class="news-source">
-
-                            ${fonte}
-
-                        </div>
-
-                        `
-                        :
-                        ""
-                    }
-
-                `;
-
-
-                elemento.appendChild(
-                    item
-                );
-
-            }
-        );
-
+  return dados.items.map(item => {
+    const { titulo, fonte } = separarFonte(limparHtml(item.title));
+    return {
+      titulo,
+      fonte: fonte || (item.author || ""),
+      descricao: limparHtml(item.description).slice(0,220)
+    };
+  });
 }
 
+async function atualizarTodosFeeds(){
+  const chaves = Object.keys(CONFIG.feeds);
+  const resultados = await Promise.allSettled(
+    chaves.map(chave => buscarFeed(CONFIG.feeds[chave]))
+  );
 
-/* =====================================================
-   MANCHETE PRINCIPAL
-===================================================== */
+  let sucesso = 0;
 
-function renderizarPrincipal(
-    noticia
-) {
-
-    if (!noticia) {
-
-        return;
-
+  resultados.forEach((res, i) => {
+    const chave = chaves[i];
+    if(res.status === "fulfilled" && res.value.length){
+      dadosPorCategoria[chave] = res.value;
+      renderizarPainel(chave);
+      sucesso++;
     }
+    // se falhar, mantém os dados antigos daquela categoria na tela
+  });
 
+  montarPoolManchetes();
 
-    const titulo =
-        limparTexto(
-            noticia
-                .querySelector(
-                    "title"
-                )
-                ?.textContent
-        );
-
-
-    const descricao =
-        limparTexto(
-            noticia
-                .querySelector(
-                    "description"
-                )
-                ?.textContent
-        );
-
-
-    const fonte =
-        limparTexto(
-            noticia
-                .querySelector(
-                    "source"
-                )
-                ?.textContent
-        );
-
-
-    document.getElementById(
-        "feature"
-    ).innerHTML = `
-
-        <div class="category">
-
-            PRINCIPAL
-
-        </div>
-
-
-        <h1>
-
-            ${titulo}
-
-        </h1>
-
-
-        <p>
-
-            ${
-                descricao
-                ?
-                descricao.substring(
-                    0,
-                    300
-                )
-                :
-                ""
-            }
-
-        </p>
-
-
-        <div
-            class="news-source"
-            style="margin-top:1vh">
-
-            ${fonte}
-
-        </div>
-
-    `;
-
+  const status = document.getElementById("statusLine");
+  if(sucesso === chaves.length){
+    status.textContent = "atualizado às " + new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+  } else if(sucesso > 0){
+    status.textContent = "atualização parcial · " + sucesso + "/" + chaves.length + " feeds";
+  } else {
+    status.textContent = "falha ao buscar feeds · tentando novamente…";
+  }
 }
 
+/* ========================= RENDER: PAINÉIS ========================= */
 
-/* =====================================================
-   ATUALIZAR NOTÍCIAS
-===================================================== */
+function renderizarPainel(chave){
+  const el = document.getElementById("list-" + chave);
+  const itens = dadosPorCategoria[chave];
+  if(!el || !itens || itens.length === 0) return;
 
-async function atualizarNoticias() {
+  const offset = offsetPainel[chave] % itens.length;
+  const visiveis = [];
+  for(let i=0; i<Math.min(CONFIG.itemsVisiveis, itens.length); i++){
+    visiveis.push(itens[(offset + i) % itens.length]);
+  }
 
-    try {
-
-
-        /*
-         * Busca Brasil
-         */
-
-        const brasil =
-            await carregarRSS(
-                CONFIG.feeds.brasil
-            );
-
-
-        /*
-         * Busca Economia
-         */
-
-        const economia =
-            await carregarRSS(
-                CONFIG.feeds.economia
-            );
-
-
-        /*
-         * Manchete principal
-         */
-
-        renderizarPrincipal(
-            brasil[0]
-        );
-
-
-        /*
-         * Lista Brasil
-         */
-
-        renderizarNoticias(
-            brasil,
-
-            document.getElementById(
-                "brasil"
-            )
-        );
-
-
-        /*
-         * Lista Economia
-         */
-
-        renderizarNoticias(
-            economia,
-
-            document.getElementById(
-                "economia"
-            )
-        );
-
-
-    }
-
-    catch (erro) {
-
-
-        console.error(
-            "Erro ao carregar notícias:",
-            erro
-        );
-
-
-        document.getElementById(
-            "brasil"
-        ).innerHTML =
-
-            "Não foi possível atualizar as notícias.";
-
-
-        document.getElementById(
-            "economia"
-        ).innerHTML =
-
-            "Tentando novamente...";
-
-    }
-
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.innerHTML = visiveis.map(n => `
+      <div class="news-item">
+        <div class="news-title">${n.titulo}</div>
+        ${n.fonte ? `<div class="news-source">${n.fonte}</div>` : ""}
+      </div>
+    `).join("");
+    el.style.opacity = 1;
+  }, 250);
 }
 
+function girarPaineis(){
+  Object.keys(dadosPorCategoria).forEach(chave => {
+    const total = dadosPorCategoria[chave].length;
+    if(total <= CONFIG.itemsVisiveis) return; // nada a girar
+    offsetPainel[chave] = (offsetPainel[chave] + CONFIG.itemsVisiveis) % total;
+    renderizarPainel(chave);
+  });
+}
 
-/* =====================================================
-   PRIMEIRA EXECUÇÃO
-===================================================== */
+/* ========================= RENDER: MANCHETE PRINCIPAL ========================= */
 
-atualizarNoticias();
+function montarPoolManchetes(){
+  const pool = [];
+  Object.keys(dadosPorCategoria).forEach(chave => {
+    dadosPorCategoria[chave].slice(0,2).forEach(item => {
+      pool.push({ ...item, categoria: chave });
+    });
+  });
+  if(pool.length){
+    manchetes = pool;
+    if(indiceManchete >= manchetes.length) indiceManchete = 0;
+  }
+}
 
+const nomesCategoria = { brasil:"Brasil", mundo:"Mundo", economia:"Economia", esportes:"Esportes" };
 
-/* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA
-===================================================== */
+function renderizarManchete(){
+  if(!manchetes.length) return;
 
-setInterval(
+  const item = manchetes[indiceManchete];
+  const h1   = document.getElementById("featTitle");
+  const p    = document.getElementById("featDesc");
+  const src  = document.getElementById("featSrc");
+  const eyeb = document.getElementById("featEyebrow");
 
-    atualizarNoticias,
+  [h1,p,src].forEach(el => el.classList.add("fade"));
 
-    CONFIG.refresh
+  setTimeout(() => {
+    eyeb.textContent = nomesCategoria[item.categoria] || "PRINCIPAL";
+    h1.textContent = item.titulo;
+    p.textContent = item.descricao;
+    src.textContent = item.fonte;
+    [h1,p,src].forEach(el => el.classList.remove("fade"));
+  }, 400);
 
-);
+  indiceManchete = (indiceManchete + 1) % manchetes.length;
+}
+
+/* barra de progresso sincronizada com a troca de manchete */
+function iniciarBarraProgresso(){
+  const fill = document.getElementById("featProgress");
+  let inicio = Date.now();
+
+  function passo(){
+    const decorrido = Date.now() - inicio;
+    const pct = Math.min(100, (decorrido / CONFIG.rotateFeatureMs) * 100);
+    fill.style.width = pct + "%";
+    if(pct >= 100) inicio = Date.now();
+    requestAnimationFrame(passo);
+  }
+  requestAnimationFrame(passo);
+}
+
+/* ========================= CICLO DE VIDA ========================= */
+
+async function iniciar(){
+  await atualizarTodosFeeds();
+  renderizarManchete();
+
+  setInterval(atualizarTodosFeeds, CONFIG.refreshFeedsMs);
+  setInterval(girarPaineis, CONFIG.rotatePanelMs);
+  setInterval(renderizarManchete, CONFIG.rotateFeatureMs);
+  iniciarBarraProgresso();
+}
+
+iniciar();
+
+/* tenta de novo rapidamente se a primeira carga falhar totalmente */
+setTimeout(() => {
+  const semDados = Object.values(dadosPorCategoria).every(arr => arr.length === 0);
+  if(semDados) atualizarTodosFeeds();
+}, 8000);
 
 </script>
 
-
 </body>
-
 </html>
